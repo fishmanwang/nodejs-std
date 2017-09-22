@@ -57,8 +57,8 @@ privated.updatePeerList = function (cb) {
             return cb();
         }
 
-        var report = library.schema.valiate(data.body.peers, {type: 'array', required: true, uniqueItems: true});
-        library.schema.validate(data.body, {
+        var report = library.scheme.validate(data.body.peers, {type: 'array', required: true, uniqueItems: true});
+        library.scheme.validate(data.body, {
             type: 'object',
             properties: {
                 peers: {

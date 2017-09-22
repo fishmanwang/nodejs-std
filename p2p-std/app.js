@@ -14,14 +14,15 @@ program
     .option('-p, --port <port>', 'Listening port number')
     .option('-a, --address <ip>', 'Listening host name or ip')
     .option('-x, --peers [peers...]', 'Peers list')
-    .option('-l, --log<leve>', 'Log level')
+    .option('-l, --log <level>', 'Log level')
+    .option('-d, --database <db>', 'Datebase name')
     .parse(process.argv);
 
-if (typeof(gc) !== 'uncefined') {
-    setInterval(function () {
-        gc();
-    }, 60000);
-}
+// if (typeof(gc) !== 'uncefined') {
+//     setInterval(function () {
+//         gc();
+//     }, 60000);
+// }
 
 if (program.config) {
     appConfig = require(path.resolve(process.cwd(), program.config));
@@ -60,7 +61,7 @@ process.on('uncaughtException', function (err) {
 });
 
 var config = {
-    "db": program.blockchain || "./blockchain.db",
+    "db": program.database || "./blockchain.db",
     "modules": {
         "transport": "./modules/transport.js",
         "system": "./modules/system.js",
@@ -91,7 +92,7 @@ d.run(function () {
             cb(null, "");
         },
 
-        schema: function (cb) {
+        scheme: function (cb) {
             cb(null, new z_schema());
         },
 

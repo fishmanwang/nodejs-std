@@ -80,7 +80,7 @@ privated.attachApi = function () {
                 ip: ip.toLong(peerIp),
                 port: headers.port,
                 state: 2,
-                os: header.os,
+                os: headers.os,
                 sharePort: Number(headers['share-port']),
                 version: headers.version
             };
@@ -112,7 +112,7 @@ privated.attachApi = function () {
 
     library.network.app.use(function (err, req, res, next) {
         if (!err) return next();
-        library.logger.error(req.url, err.toString());
+        library.logger.error(req.url, err.stack);
         res.status(500).send({success: false, error: err.toString()});
     });
 
@@ -142,7 +142,7 @@ Transport.prototype.getFromRandomPeer = function (config, options, cb) {
     }
     config.limit = 1;
     async.retry(20, function (cb) {
-        module.peer.list(config, function (err, peers) {
+        modules.peer.list(config, function (err, peers) {
             if (!err && peers.length) {
                 var peer = peers[0];
                 self.getFromPeer(peer, options, cb);
@@ -216,7 +216,7 @@ Transport.prototype.getFromPeer = function (peer, options, cb) {
         response.headers.port = parseInt(response.headers.port);
         response.headers['share-port'] = parseInt(response.headers['share-port']);
 
-        var report = library.schema.validate(response.headers, {
+        var report = library.scheme.validate(response.headers, {
             type: 'object',
             properties: {
                 os: {
