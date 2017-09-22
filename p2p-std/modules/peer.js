@@ -5,7 +5,7 @@ var async = require('async'),
     extend = require('extend'),
     sandboxHelper = require('../helper/sandbox');
 
-require('array.prototype,find'); // Old node fix
+//require('array.prototype.find'); // Old node fix
 
 // private fields
 var modules, library, self, privated = {}, shared = {};
@@ -15,7 +15,7 @@ function Peer(cb, scope) {
     library = scope;
     self = this;
     self.__private = privated;
-    private.attachApi();
+    privated.attachApi();
 
     setImmediate(cb, null, self);
 }
@@ -346,6 +346,8 @@ Peer.prototype.sandboxApi = function (call, args, cb) {
 // Events
 Peer.prototype.onBind = function (scope) {
     modules = scope;
+
+    library.bus.message('blockchainReady');
 };
 
 Peer.prototype.onBlockchainReady = function () {

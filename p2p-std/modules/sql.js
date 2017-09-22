@@ -2,7 +2,7 @@ var async = require('async');
 var jsonSql = require('json-sql')();
 jsonSql.setDialect("sqlite")
 var extend = require('extend');
-var sandboxHelper = require('../helpers/sandbox.js')
+var sandboxHelper = require('../helper/sandbox.js')
 
 // private fields
 var modules, library, self, privated = {}, shared = {};

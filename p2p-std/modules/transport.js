@@ -13,7 +13,7 @@ var Router = require('../helper/router'),
 var modules, library, self, privated = {}, shared = {};
 
 privated.headers = {};
-privated.loaded = false;
+privated.loaded = true;
 privated.messages = {};
 
 // Constructor
@@ -134,7 +134,7 @@ Transport.prototype.broadcast = function (config, options, cb) {
     });
 };
 
-Transport.property.getFromRandomPeer = function (config, options, cb) {
+Transport.prototype.getFromRandomPeer = function (config, options, cb) {
     if (typeof(options) == 'function') {
         cb = options;
         options = config;
@@ -267,7 +267,7 @@ Transport.prototype.sandboxApi = function (call, args, cb) {
     sandboxHelper.callMethod(shared, call, args, cb);
 }
 
-Transport.prototype.onBind = function () {
+Transport.prototype.onBind = function (scope) {
     modules = scope;
 
     privated.headers = {

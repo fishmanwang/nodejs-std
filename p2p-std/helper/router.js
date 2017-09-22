@@ -4,7 +4,7 @@ function map(root, config) {
     var router = this;
     Object.keys(config).forEach(function(params) {
         var route = params.split(' ');
-        if (route.length != 2 || ['post', 'get', 'put'].indexOf(route[0] == -1)) {
+        if (route.length != 2 || ['post', 'get', 'put'].indexOf(route[0]) == -1) {
             throw Error('wrong map config');
         }
         router[route[0]](route[1], function(req, res, next) {
@@ -31,4 +31,6 @@ var Router = function() {
     router.map = map;
 
     return router;
-}
+};
+
+module.exports = Router;
