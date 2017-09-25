@@ -18,10 +18,11 @@
   "homepage": "https://github.com/fishmanwang/nodejs-std#readme",
   "dependencies": {
     "async": "^2.5.0",
-    "body-parser": "^1.18.1",
+    "body-parser": "^1.18.2",
     "change-case": "^3.0.1",
     "colors": "^1.1.2",
     "commander": "^2.11.0",
+    "cookie-parser": "^1.4.3",
     "dblite": "^0.8.0",
     "express": "^4.15.4",
     "express-domain-middleware": "^0.1.0",
